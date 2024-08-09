@@ -101,8 +101,7 @@ function popuplateBottomListings(listing){
             <a class="pe-auto" onClick="">
                 <h5 class="card-title mb-3" style="color:#4d4d4d"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">${listing.name}</button></h5>
             </a>
-            <h6 class="card-subtitle mb-1 text-muted" style="white-space: nowrap; text-overflow: ellipsis; width: 100%; overflow: hidden;">
-              
+            <h6 class="card-subtitle mb-1 text-muted" style="white-space: nowrap; text-overflow: ellipsis; width: 100%; overflow: hidden;"> 
                  ${address} <br>
             </h6>
               </div>
@@ -563,13 +562,14 @@ function populateAllListings(listings){
         const totalUnits = listings[i]?.unit_mix?.data.find(unit => unit.unitType == "Overall")?.totalUnits || 0;
         const availableUnits = listings[i]?.balance_units?.data.find(unit => unit.unitType == "Overall")?.availableUnits || 0;
         const unitsSold = totalUnits - availableUnits;
+        const region = listing.geographical_region
         const nearestMRT = listings[i]?.location_map?.amenities?.find(detail => detail.Category == "MRT Stations") || null;
         const dev_type = listings[i].dev_type;
 
             listingContainer.innerHTML += `
           <div class="item" style="
           margin:0px 10px;
-            height: 400px;
+            height: 450px;
             overflow:hidden;
             box-shadow: 0px 2px 13px -5px rgba(0,0,0,0.75);
             border-radius: 20px;">
@@ -585,26 +585,28 @@ function populateAllListings(listings){
                 text-overflow: ellipsis;
                 width: 100%;
                 height: 40px;
-                overflow: hidden;">
+                overflow: hidden;
+                margin-bottom: 0px;">
                  ${address}
                 </p>
                 <div style="display: flex; padding: 6px 0px;">
                   <div style="width: 80%;">
-                    <p onclick="openSingleListing(this)" style="cursor:pointer; font-weight: 700;white-space: nowrap; overflow: hidden;
-  margin-bottom: 0px;">${listing.name}</p>
-                    <div>
-                      <span style="font-size: 13px;
-                      border: 1px solid #c4c4c4;
-                      padding: 2px 4px;
-                      border-radius: 7px;
-                      color: #918d8d;
-                      font-weight: 600;">Corner Terrace</span>
-                      <span style="font-size: 13px;
-                      border: 1px solid #c4c4c4;
-                      padding: 2px 4px;
-                      border-radius: 7px;
-                      color: #918d8d;
-                      font-weight: 600;">Freehold</span>
+                    <p onclick="openSingleListing(this)" style="cursor:pointer; font-weight: 700;white-space: nowrap; overflow: hidden; margin-bottom: 0px;">${listing.name}</p>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-size: 13px; display:flex;
+                            padding: 5px 0px 2px 0px;
+                            color: #918d8d;
+                            font-weight: 600;">
+                            <img src="public/placeholder.png" width="20px" style="margin-right: 5px;">
+                            ${region}
+                        </span>
+                        <span style="font-size: 13px; display:flex;
+                            padding: 2px 0px;
+                            color: #918d8d;
+                            font-weight: 600;">
+                            <img src="public/meter.png" style="margin-right: 9px;" width="20px">
+                                0.92 km to EW 7 Eunos
+                        </span>
                     </div>
                   </div>
                   <div>
@@ -628,6 +630,9 @@ function populateAllListings(listings){
                        </span>
                     </div>
                   </div>
+                </div>
+                <div style="font-size: 11px; font-weight: 700; text-align: center; margin:5px 0px;">
+                  Total: ${totalUnits} units Available: ${availableUnits} units Sold: ${unitsSold} units 
                 </div>
                 <div style="display: flex;
                 justify-content: space-between;
