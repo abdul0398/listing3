@@ -409,9 +409,7 @@
         width: 90%;
         margin: auto;
       }
-      .inner-all-listings{
-        padding: 50px 10px 100px 10px;
-      }
+      
 
       .slide {
         display: flex;
@@ -428,6 +426,28 @@
       }
       .slick-list{
         padding: 10px 0px;
+      }
+      .arrow{
+        position: absolute;
+      }
+      .next{
+        right: 29px;
+        top: 50%;
+        font-size: 40px;
+        color: #6c6c6c;
+        cursor: pointer;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      .prev{
+        left: 29px;
+        top: 50%;
+        font-size: 40px;
+        cursor: pointer;
+        color: #6c6c6c;
+        transform: translateY(-50%);
+        z-index: 1;
+
       }
 
       @media screen and (max-width: 500px) {
@@ -446,6 +466,10 @@
           }
           #dev-form-mobile{
             display: block !important;
+          }
+          #all-listings{
+            width: 100%;
+            padding: 0px 5px !important;
           }
       }
     </style>
@@ -466,6 +490,13 @@
     <div class="d-flex h-100 main-container">
       <div class="left-pane">
         <div id="all-listings" class="px-3">
+         <div style="padding: 50px 10px 100px 10px; position: relative;">
+          <div class="arrow next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+          <div class="arrow prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
           <div class="inner-all-listings">
             <div class="item" style="width: 300px;
             height: 420px;
@@ -545,6 +576,7 @@
               </div>
             </div>
           </div>
+        </div>
 
 
 
