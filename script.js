@@ -637,95 +637,124 @@ function populateAllListings(listings) {
     const dev_type = listings[i].dev_type;
 
     listingContainer.innerHTML += `
-          <div class="item" style="
-          margin:0px 10px;
-            height: 450px;
-            overflow:hidden;
-            box-shadow: 0px 2px 13px -5px rgba(0,0,0,0.75);
-            border-radius: 20px;">
-              <div style="border-radius: 20px;">
-                <img style="filter: brightness(0.9); border-top-left-radius: 20px;
+<div class="" <div="" style="margin: 0px 10px;height: 461px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
+              <div style="border-radius: 20px;padding: 14px;">
+                <img style="
+  filter: brightness(0.9);
+  border-radius: 20px;
+  " : brightness(0.9); border-top-left-radius: 20px;
   border-top-right-radius: 20px;" src="https://api.jomejourney-portal.com${
     listing.images[0] ? listing.images[0] : listing.images[1]
   }" width="100%" height="200px" alt="">
               </div>
 
               <div style="padding: 10px 13px;">
-                <p style="font-size: 13px;
+                <p style="
+                /* background: #ededed; */
+                font-size: 12px;
                 color: #828282;
                 font-weight: 600;
-                text-overflow: ellipsis;
-                width: 100%;
-                height: 40px;
+                margin-bottom: 0px;
+                white-space: nowrap;
                 overflow: hidden;
-                margin-bottom: 0px;">
-                 ${address}
+                ">
+                ${address}
                 </p>
-                <div style="display: flex; padding: 6px 0px;">
+                <div style="display: flex;padding: 0px 0px;">
                   <div style="width: 80%;">
-                    <p onclick="openSingleListing(this)" style="cursor:pointer; font-weight: 700;white-space: nowrap; overflow: hidden; margin-bottom: 0px;">${
+                    <p onclick="openSingleListing(this)" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 28px;">${
                       listing.name
                     }</p>
-                    <div style="display: flex; flex-direction: column;">
-                        <span style="font-size: 13px; display:flex;
+                    <div style="display: flex;flex-direction: column;margin-top: 3px;">
+                        <span style="
+                            font-size: 12px;
+                            display:flex;
                             padding: 5px 0px 2px 0px;
-                            color: #918d8d;
-                            font-weight: 600;">
+                            color: #000000;
+                            font-weight: 400;
+                            ">
                             <img src="public/placeholder.png" width="20px" style="margin-right: 5px;">
-                            ${region}
+                             ${region}
                         </span>
-                        <span style="font-size: 13px; display:flex;
+                        <span style="
+                            font-size: 12px;
+                            display:flex;
                             padding: 2px 0px;
-                            color: #918d8d;
-                            font-weight: 600;">
-                            <img src="public/meter.png" style="margin-right: 9px;" width="20px">
-                                0.92 km to EW 7 Eunos
+                            color: #000000;
+                            font-weight: 400;
+                            ">
+                            <img src="public/meter.png" style="margin-right: 5px;" width="20px">
+                                ${nearestMRT.Distance} to ${nearestMRT.Location}
                         </span>
                     </div>
                   </div>
-                  <div>
-                    <div style="border-radius: 50%;
-                    aspect-ratio: 1;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    padding: 8px;
-                    font-size: 12px;
-                    background-color: #47567e;
-                    color: white;
-                    font-weight: 600;
-                  ">
-                       <span>
-                         Brand  
-                       </span>
-                       <span>
-                         New
-                       </span>
-                    </div>
+                  <div><img src="https://cdn-icons-png.flaticon.com/512/3634/3634451.png" style="
+                          width: 73px;
+                          margin-top: -16px;
+                      ">
+                                          
                   </div>
                 </div>
-                <div style="font-size: 11px; font-weight: 700; text-align: center; margin:5px 0px">
+                <div style="
+                      padding: 0px 0px;
+                      margin-top: 12px;
+                  ">
+                      <p style="
+                      font-size: 13px;
+                      font-weight: 500;
+                      text-align: center;
+                      margin: 5px 0px;
+                      background: #e1e1e18c;
+                      border-radius: 5px;
+                      padding: 5px;
+                      color: #717171;
+                      white-space: nowrap;
+                      overflow: auto;
+                      ">
                   Total: ${totalUnits} units Available: ${availableUnits} units Sold: ${unitsSold} units 
+                  </p>
                 </div>
-                <div style="display: flex;
+                <div style="
+                display: flex;
                 justify-content: space-between;
-                padding: 10px 0px;">
-                  <div style="font-weight: 600;">
+                padding: 10px 0px;
+                margin-top: 10px;
+                ">
+                  <div style="font-weight: 600;font-size: 22px;margin-left: 9px;margin-top: -7px;">
                     S$50,000
                   </div>
                   <div>
-                    <span style="background-color: green;
-                    color: white;
-                    padding: 5px 8px;
-                    border-radius: 10px;
-                    font-size: 14px; font-weight: 600;">Enquire Now</span>
+                    <span style="
+                    background-color: #ffe066;
+                    color: #4d4b4b;
+                    padding: 10px 20px;
+                    border-radius: 24px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    ">Enquire Now</span>
 
                   </div>
 
                 </div>
               </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         `;
   }
 
