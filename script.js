@@ -637,7 +637,7 @@ function populateAllListings(listings) {
     const dev_type = listings[i].dev_type;
 
     listingContainer.innerHTML += `
-<div class="" <div="" style="margin: 0px 10px;height: 461px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
+<div class="" <div="" style="margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
               <div style="border-radius: 20px;padding: 14px;">
                 <img style="
   filter: brightness(0.9);
@@ -650,21 +650,29 @@ function populateAllListings(listings) {
 
               <div style="padding: 10px 13px;">
                 <p style="
-                /* background: #ededed; */
-                font-size: 12px;
+               font-size: 12px;
                 color: #828282;
                 font-weight: 600;
                 margin-bottom: 0px;
-                white-space: nowrap;
                 overflow: hidden;
+                min-height: 35px;
                 ">
                 ${address}
                 </p>
-                <div style="display: flex;padding: 0px 0px;">
-                  <div style="width: 80%;">
-                    <p onclick="openSingleListing(this)" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 28px;">${
+                <div style="display: flex;padding: 0px 0px; height: 40px;">
+                  <div style="width: 70%;">
+                    <p onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 28px;">${
                       listing.name
                     }</p>
+                  </div>
+                  <div>
+                      <img src="https://cdn-icons-png.flaticon.com/512/3634/3634451.png" style="
+                      width: 73px;
+                      margin-top: -16px;
+                      ">
+                    
+                  </div>
+                </div>
                     <div style="display: flex;flex-direction: column;margin-top: 3px;">
                         <span style="
                             font-size: 12px;
@@ -687,14 +695,6 @@ function populateAllListings(listings) {
                                 ${nearestMRT.Distance} to ${nearestMRT.Location}
                         </span>
                     </div>
-                  </div>
-                  <div><img src="https://cdn-icons-png.flaticon.com/512/3634/3634451.png" style="
-                          width: 73px;
-                          margin-top: -16px;
-                      ">
-                                          
-                  </div>
-                </div>
                 <div style="
                       padding: 0px 0px;
                       margin-top: 12px;
@@ -727,9 +727,9 @@ function populateAllListings(listings) {
                     <span style="
                     background-color: #ffe066;
                     color: #4d4b4b;
-                    padding: 10px 20px;
+                    padding: 8px 8px;
                     border-radius: 24px;
-                    font-size: 16px;
+                    font-size: 14px;
                     font-weight: 600;
                     ">Enquire Now</span>
 
@@ -764,7 +764,7 @@ function populateAllListings(listings) {
     speed: 300,
     slidesToShow: 4,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 100000,
     prevArrow:$(".prev"),
     nextArrow:$('.next'),
     responsive: [
