@@ -665,7 +665,10 @@ function populateAllListings(listings) {
                       listing.name
                     }</p>
                   </div>
-                  <div>
+                  <div style="width: 30%;
+  display: flex;
+  justify-content: end;
+  align-items: start;">
                       <img src="https://cdn-icons-png.flaticon.com/512/3634/3634451.png" style="
                       width: 73px;
                       margin-top: -16px;
