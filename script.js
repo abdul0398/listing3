@@ -430,8 +430,8 @@ function populateAllListings(listings) {
     const dev_type = listings[i].dev_type;
 
     listingContainer.innerHTML += `
-<div  <div onclick="openSingleListing(this)" title="${listing.name}"  style="cursor:pointer; margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
-              <div style="border-radius: 20px;padding: 14px;">
+<div  <div   style=" margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
+              <div onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer; border-radius: 20px;padding: 14px;">
                 <img style="
   filter: brightness(0.9);
   border-radius: 20px;
@@ -520,13 +520,17 @@ function populateAllListings(listings) {
                     S$50,000
                   </div>
                   <div>
-                    <span style="
+                 
+                    <span
+                     onclick="openContactUsPage()"
+                    style="
                     background-color: #ffe066;
                     color: #4d4b4b;
                     padding: 8px 8px;
                     border-radius: 24px;
                     font-size: 14px;
                     font-weight: 600;
+                    cursor:pointer;
                     ">Enquire Now</span>
 
                   </div>
@@ -1460,4 +1464,18 @@ function changeColorThroughParams(){
         }
     });
 }
+}
+
+
+
+function openContactUsPage(){
+  const form = document.createElement("form");
+
+  form.setAttribute('action', document.referrer + 'contact-us');
+  form.setAttribute('method', "post");
+  form.setAttribute("target", "_blank");
+
+  document.body.appendChild(form);
+
+  form.submit();
 }
