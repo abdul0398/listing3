@@ -20,10 +20,9 @@ async function start() {
   openLoading();
   const data = await fetchNewListings();
   listings = data.listings;
-  selectProjectBasedOnParams();
-  // openMap();
   populateAllListings(listings);
   closeLoading();
+  changeColorThroughParams()
   addEventListenerToInput();
 }
 
@@ -61,212 +60,6 @@ function openMap() {
   map.setMaxBounds(bounds);
 }
 
-function popuplateBottomListings(listing) {
-  const address = listing?.details[0].para + ", " + listing?.details[1].para;
-
-  const totalUnits =
-    listing?.unit_mix?.data.find((unit) => unit.unitType == "Overall")
-      ?.totalUnits || 0;
-  const availableUnits =
-    listing?.balance_units?.data.find((unit) => unit.unitType == "Overall")
-      ?.availableUnits || 0;
-  const unitsSold = totalUnits - availableUnits;
-  const nearestMRT =
-    listing?.location_map?.amenities?.find(
-      (detail) => detail.Category == "MRT Stations"
-    ) || null;
-  const dev_type = listing.dev_type;
-
-  const mapBottomListing = document.getElementById("map-bottom-listing");
-  mapBottomListing.innerHTML = "";
-  mapBottomListing.innerHTML = `
-        <div class="card my-3" style="max-width: 100%; height: 100%; border-radius: 40px; border:none;box-shadow: -5px 5px 23px -3px rgba(189,189,189,1);">
-      <div class="h-100 d-flex p-3">
-        <div class="w-50" style="position:relative">
-          <!-- ${
-            dev_type
-              ? `<p style="
-          position: absolute;
-          background-color: #39548a;
-          color: white;
-          font-size: 10px;
-          padding: 2px 5px;
-          top: 10px;
-          left: 30px;
-          border-radius: 3px;
-          font-weight: bold;
-          ">${dev_type}</p>`
-              : ""
-          } -->
-              <img class="w-100" style="height:100%; border-radius: 40px;" src="https://api.jomejourney-portal.com${
-                listing.images[0] ? listing.images[0] : listing.images[1]
-              }">
-        </div>
-        <div class="w-50" style="padding-top: 0px; overflow:auto">
-          <div class="card-body">
-            <a class="pe-auto" onClick="">
-                <h5 class="card-title mb-3" style="color:#4d4d4d"><button style="padding:0px" class="bg-transparent border-0" onmouseover="hoverListingHandler(this)" onmouseout="removeHoverPopup(this)" onclick="openSingleListing(this)">${
-                  listing.name
-                }</button></h5>
-            </a>
-            <h6 class="card-subtitle mb-1 text-muted" style="white-space: nowrap; text-overflow: ellipsis; width: 100%; overflow: hidden;"> 
-                 ${address} <br>
-            </h6>
-              </div>
-              <p class='mb-2 text-muted' style="padding-left:1rem; font-size:11px">
-              <img src="public/placeholder.png" width="20px" />  West Region
-              </p>
-             ${
-               nearestMRT
-                 ? `<p style="margin-bottom:0px; padding-left: 1rem; font-size: 11px; color: #6c757d !important; display: flex;align-items: center;gap: 6px;display: flex;align-items: center;gap: 6px;"><img src="public/meter.png" width="20px" /> ${nearestMRT.Distance} to ${nearestMRT.Location}</p>`
-                 : ""
-             }
-            <div style="font-size:11px; padding:0px 1rem;line-height: 30px;">
-               <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Total: ${totalUnits} units</span>
-            <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Available: ${availableUnits} units</span>
-            <span style="font-weight: bold; color: black; padding: 3px;border-radius: 2px;">Sold: ${unitsSold} units</span>
-            </div>
-            <div class="pt-3" style="padding-left: 1rem;">
-              <button class="read-more-btn" onclick="openSingleListing(this)" data_name="${
-                listing.name
-              }">Read More</button>
-            </div>
-          </div>
-
-      </div>
-  </div>
-        `;
-}
-
-async function handlePopupClick(index) {
-  popuplateBottomListings(listings[index]);
-}
-
-async function fetchCoordinatesAndPopulateMap(listings) {
-  for (let i = 0; i < listings.length; i++) {
-    const project = listings[i];
-    const LATITUDE = project.latitude;
-    const LONGITUDE = project.longitude;
-    if (!LATITUDE || !LONGITUDE) continue;
-
-    const marker = L.marker([LATITUDE, LONGITUDE], {
-      riseOnHover: true,
-      title: project.name,
-    }).addTo(map);
-
-    const expectedTOP =
-      project?.details.find((detail) => detail.title == "Expected TOP")?.para ||
-      "";
-    const Land_Tenure =
-      project?.details.find((detail) => detail.title == "Land Tenure")?.para ||
-      "";
-    const Development_Size =
-      project?.details.find((detail) => detail.title == "Development Size")
-        ?.para || "";
-    const latestTransaction = Array.isArray(project.transactions)
-      ? project.transactions[0]
-      : null;
-    const popupContent = `
-            <div class="w-200" id="popup-${i}" style="height: 180px; cursor:pointer" onclick="handlePopupClick(${i})">
-                <div class="donate-title d-flex" style="height: 120px; padding:5px">
-                    <img src="https://api.jomejourney-portal.com${
-                      project.images[0] ? project.images[0] : project.images[1]
-                    }" alt="${project.name}" class="h-100 w-50 me-1 rounded-2">
-                    <div class="px-1">
-                        <p class="mt-0" style="cursor:pointer; font-weight:900; margin-bottom:0px; font-size: 15px;">${
-                          project.name
-                        }</p>
-                        <p style="margin-top: 0px; color:#6f6f6f; font-weight:600; font-size:11px">${
-                          project.details[0].para
-                        }</p>
-                       ${
-                         expectedTOP
-                           ? `<p style="margin: 0px; color:#6f6f6f; font-weight:600; font-size:11px"><span style="color:black">TOP: </span>${expectedTOP}</p>`
-                           : ""
-                       }
-                        <p style="margin: 0px; color:#6f6f6f; font-weight:600; font-size:11px">${Land_Tenure}</p>
-                        <p style="margin: 0px; color:#6f6f6f; font-weight:600; font-size:11px">${Development_Size}</p>
-                    </div>
-                </div>
-                <div>
-                    <hr style="margin-bottom:0px">
-                </div>
-                ${
-                  latestTransaction
-                    ? `
-                <div style="padding:5px">
-                <p style="margin:0px; font-size: 10px; font-weight: bold; color: #6f6f6f;">LATEST TRANSACTION</p>
-                <div style="display: flex;justify-content: space-between;font-size: 11px;margin-top: 3px;font-weight: bold; color:black;">
-                    <div>${latestTransaction.Date}</div>
-                    <div>${latestTransaction.Size} sqft</div>
-                    <div>${latestTransaction.Price}</div>
-                </div>
-                </div>`
-                    : ""
-                }
-            </div>
-        `;
-
-    marker.bindPopup(popupContent, {
-      minWidth: 300,
-      maxWidth: 300,
-      padding: 0,
-      className: "marker-popup",
-      autoClose: true,
-    });
-    markerArray.push(marker);
-
-    marker.on("mouseover", function (e) {
-      marker.openPopup();
-
-      const latLng = marker.getLatLng();
-
-      const offsetLatLng = L.latLng(
-        latLng.lat -
-          (map.getBounds().getSouth() - map.getBounds().getNorth()) * 0.15, // Adjust the factor as needed
-        latLng.lng
-      );
-
-      map.setView(offsetLatLng, map.getZoom(), {
-        animate: true,
-        pan: { duration: 1.5 },
-      });
-      // popuplateBottomListings(listings[i]);
-    });
-
-    marker.on("click", function (e) {
-      changeSelectedMarkerLogo(marker);
-      marker.setZIndexOffset(1000);
-      marker.openPopup();
-      createCircleInMap(marker.getLatLng().lat, marker.getLatLng().lng, 3000);
-      const name = project.name;
-      const desc = project.description;
-      const region = project.geographical_region;
-      const Galleryimages = project.images;
-      const sitePlan = project.siteplan;
-      const details = project.details;
-      const locationMap = project.location_map;
-      const unit_mix = project.unit_mix;
-      const balance_units = project.balance_units;
-      const developer = project.developer;
-      const transactions = project.transactions;
-      addAmmenitiesMarkers(name);
-      addInfoToSingleListing(
-        desc,
-        name,
-        region,
-        Galleryimages,
-        sitePlan,
-        details,
-        locationMap,
-        unit_mix,
-        balance_units,
-        developer,
-        transactions
-      );
-    });
-  }
-}
 
 async function fetchNewListings() {
   const options = {
@@ -637,7 +430,7 @@ function populateAllListings(listings) {
     const dev_type = listings[i].dev_type;
 
     listingContainer.innerHTML += `
-<div class="" <div="" style="margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
+<div  <div onclick="openSingleListing(this)" title="${listing.name}"  style="cursor:pointer; margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
               <div style="border-radius: 20px;padding: 14px;">
                 <img style="
   filter: brightness(0.9);
@@ -741,23 +534,6 @@ function populateAllListings(listings) {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         `;
   }
 
@@ -772,7 +548,7 @@ function populateAllListings(listings) {
     nextArrow:$('.next'),
     responsive: [
       {
-        breakpoint: 1100,
+        breakpoint: 900,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -780,7 +556,7 @@ function populateAllListings(listings) {
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 700,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -804,7 +580,7 @@ function showMainPage() {
 }
 
 function openSingleListing(btn) {
-  let name = btn.innerText;
+  let name = btn.getAttribute('title');
 
   document.getElementById("single-listing").classList.remove("d-none");
   document.getElementById("all-listings").classList.add("d-none");
@@ -834,6 +610,7 @@ function openSingleListing(btn) {
     developer,
     transactions
   );
+  changeColorThroughParams();
 }
 
 function debounce(func, delay) {
@@ -1075,21 +852,6 @@ function closeLoading() {
   document.querySelector(".darksoul-layout").classList.add("d-none");
 }
 
-function selectProjectBasedOnParams() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const projectName = urlParams.get("project");
-  if (projectName) {
-    const project = listings.find(
-      (listing) => processText(listing.name) == processText(projectName)
-    );
-    if (project) {
-      const btn = document.createElement("button");
-      btn.innerText = project.name;
-      openSingleListing(btn);
-    }
-  }
-}
-
 // function to remove all spaces from a string and convert to lowercase
 function processText(text) {
   // Remove spaces
@@ -1104,32 +866,6 @@ function handleScroll(btn) {
   const element = document.getElementById(target);
   element.scrollIntoView({ behavior: "smooth" });
 }
-
-function openDropDown(filteredListings) {
-  const container = document.querySelector(".drop-down-search");
-  container.innerHTML = "";
-  container.classList.remove("d-none");
-  // add image and name to the dropdown
-  for (let i = 0; i < filteredListings.length; i++) {
-    const name = filteredListings[i].name;
-    container.innerHTML += `
-        <div class="d-flex align-items-center p-2 " onmouseover="searchResultHoverHandler(this)" onmouseout="searchResultOutHandler(this)" style="cursor:pointer; border-bottom:1px solid #dbd9d9" onclick="openSingleListing(this)">
-            <img src="public/office-building.png" style="width:40px"/>
-            <p class="ms-2 my-0" style="color: black;font-size: 14px;">${name}</p>
-        </div>
-        `;
-  }
-
-  if (filteredListings.length == 0) {
-    container.innerHTML = `
-        <div class="d-flex align-items-center p-2">
-            <p class="my-0 mx-auto" style="color: black;
-            font-size: 14px;">No results found</p>
-        </div>
-        `;
-  }
-}
-
 function closeDropDown() {
   document.querySelector(".drop-down-search").classList.add("d-none");
 }
@@ -1702,4 +1438,26 @@ function toggleMap() {
   }
 
   map.invalidateSize();
+}
+
+
+
+
+function changeColorThroughParams(){
+  const params = new URLSearchParams(window.location.search);
+  const newColor = params.get('color');
+  
+  if (newColor) {
+    // Select all elements with style color #39548a
+    const elements = document.querySelectorAll('*');
+
+    elements.forEach(element => {
+        const elementStyle = window.getComputedStyle(element);
+
+        if (elementStyle.backgroundColor === 'rgb(57, 84, 138)') { // Equivalent to #39548a
+          console.log(element)
+            element.style.backgroundColor = `#${newColor}`;
+        }
+    });
+}
 }
