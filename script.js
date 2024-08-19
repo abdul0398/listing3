@@ -492,7 +492,7 @@ function populateAllListings(listings) {
                       margin-top: 12px;
                   ">
                       <p style="
-                      font-size: 13px;
+                      font-size: 10px;
                       font-weight: 500;
                       text-align: center;
                       margin: 5px 0px;
@@ -501,7 +501,6 @@ function populateAllListings(listings) {
                       padding: 5px;
                       color: #717171;
                       white-space: nowrap;
-                      overflow: auto;
                       ">
                   Total: ${totalUnits} units Available: ${availableUnits} units Sold: ${unitsSold} units 
                   </p>
