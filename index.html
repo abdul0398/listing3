@@ -425,20 +425,20 @@
       .scroll-btn:hover{
         scale: 1.2;        
       }
+      .inner-all-listings{
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          row-gap: 20px;
+      }
       @media screen and (max-width: 1000px) {
         .inner-all-listings{
-          grid-template-columns: repeat(3,auto) !important;
+          grid-template-columns: repeat(3,1fr) !important;
         }  
       }
       @media screen and (max-width: 750px) {
         .inner-all-listings{
-          grid-template-columns: repeat(2,auto) !important;
+          grid-template-columns: repeat(2,1fr) !important;
         }  
-      }
-      .inner-all-listings{
-          display: grid;
-          grid-template-columns: repeat(4, auto);
-          row-gap: 20px;
       }
       @media screen and (max-width: 500px) {
           .donate-header-text{
@@ -462,7 +462,7 @@
             padding: 0px 5px !important;
           }
           .inner-all-listings{
-            grid-template-columns: auto !important;
+            grid-template-columns: 1fr !important;
           }
       }
      
