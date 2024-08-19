@@ -403,9 +403,6 @@ function addInfoToSingleListing(
 }
 
 function populateAllListings(listings) {
-  if (isOuterSlick) {
-    $(".inner-all-listings").slick("unslick");
-  }
   const listingContainer = document.querySelector(".inner-all-listings");
   listingContainer.innerHTML = "";
 
@@ -429,8 +426,7 @@ function populateAllListings(listings) {
       ) || null;
     const dev_type = listings[i].dev_type;
 
-    listingContainer.innerHTML += `
-<div  <div   style=" margin: 0px 10px;height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 13px -5px;border-radius: 20px;width: 345px;" data-slick-index="117" id="" aria-hidden="true" tabindex="-1">
+    listingContainer.innerHTML += `<div   style=" margin: 0px 10px; height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 8px -5px;border-radius: 20px;">
               <div onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer; border-radius: 20px;padding: 14px;">
                 <img style="
   filter: brightness(0.9);
@@ -443,9 +439,9 @@ function populateAllListings(listings) {
 
               <div style="padding: 10px 13px;">
                 <p style="
-               font-size: 12px;
+               font-size: 11px;
                 color: #828282;
-                font-weight: 600;
+                font-weight: 500;
                 margin-bottom: 0px;
                 overflow: hidden;
                 min-height: 35px;
@@ -454,7 +450,7 @@ function populateAllListings(listings) {
                 </p>
                 <div style="display: flex;padding: 0px 0px; height: 40px;">
                   <div style="width: 70%;">
-                    <p onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 28px;">${
+                    <p onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 19px;">${
                       listing.name
                     }</p>
                   </div>
@@ -541,40 +537,7 @@ function populateAllListings(listings) {
         `;
   }
 
-  isOuterSlick = true;
-  $(".inner-all-listings").slick({
-    infinite: true,
-    speed: 300,
-    slidesToShow: 4,
-    autoplay: true,
-    autoplaySpeed: 100000,
-    prevArrow:$(".prev"),
-    nextArrow:$('.next'),
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
+
 }
 
 function showMainPage() {

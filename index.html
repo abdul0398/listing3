@@ -407,6 +407,8 @@
       #all-listings{
         height:100%;
         margin: auto;
+        overflow: auto; 
+
       }
       
 
@@ -423,30 +425,21 @@
       .scroll-btn:hover{
         scale: 1.2;        
       }
-      .slick-list{
-        padding: 10px 0px;
+      @media screen and (max-width: 1000px) {
+        .inner-all-listings{
+          grid-template-columns: repeat(3,auto) !important;
+        }  
       }
-      .arrow{
-        position: absolute;
+      @media screen and (max-width: 750px) {
+        .inner-all-listings{
+          grid-template-columns: repeat(2,auto) !important;
+        }  
       }
-      .next{
-        right: 29px;
-        top: 20%;
-        font-size: 40px;
-        color: #b4b4b4;
-        cursor: pointer;
-        z-index: 1;
+      .inner-all-listings{
+          display: grid;
+          grid-template-columns: repeat(4, auto);
+          row-gap: 20px;
       }
-      .prev{
-        left: 29px;
-        top: 20%;
-        font-size: 40px;
-        cursor: pointer;
-        color: #b4b4b4;
-        z-index: 1;
-
-      }
-
       @media screen and (max-width: 500px) {
           .donate-header-text{
             padding: 20px 5px 100px 5px;
@@ -468,13 +461,11 @@
             width: 100%;
             padding: 0px 5px !important;
           }
-          .arrow{
-            display: none !important;
-          }
-          .arrow-mobile{
-            display: flex !important;
+          .inner-all-listings{
+            grid-template-columns: auto !important;
           }
       }
+     
     </style>
 
     <link rel="stylesheet" href="slider.css" />
@@ -494,98 +485,7 @@
       <div class="left-pane">
         <div id="all-listings" class="">
          <div style="position: relative;">
-          <div class="arrow next">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-          <div class="arrow prev">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
           <div class="inner-all-listings">
-            <div class="item" style="width: 300px;
-            height: 420px;
-            box-shadow: 0px 2px 13px -5px rgba(0,0,0,0.75);
-            border-radius: 20px;">
-              <div style="border-radius: 20px;">
-                <img style="filter: brightness(0.9); border-top-left-radius: 20px;
-  border-top-right-radius: 20px;" src="https://api.jomejourney-portal.com/uploads/wattenhouse/1b1372133022c39989c13627225427.jpg" width="100%" height="200px" alt="">
-              </div>
-
-              <div style="padding: 10px 13px;">
-                <p style="font-size: 13px;
-                color: #828282;
-                font-weight: 600;
-                /* white-space: nowrap; */
-                text-overflow: ellipsis;
-                width: 100%;
-                overflow: hidden;
-                margin-bottom: 0px;">
-                  Bukit Batok West Ave 5, D23 - Dairy Farm / Bukit Panjang / Choa Chu Kang 
-                </p>
-                <div style="display: flex; padding: 6px 0px;">
-                  <div style="width: 100%;">
-                    <p style="font-weight: 700;
-  margin-bottom: 0px;">SORA</p>
-                    <div style="display: flex; flex-direction: column;">
-                      <span style="font-size: 13px;
-                      padding: 5px 0px 2px 0px;
-                      color: #918d8d;
-                      font-weight: 600;"><img src="public/placeholder.png" width="20px" style="margin-right: 5px;"> City Fringe · Central Region</span>
-                      <span style="font-size: 13px;
-                      padding: 2px 0px;
-                      color: #918d8d;
-                      font-weight: 600;"><img src="public/meter.png" style="margin-right: 9px;" width="20px">0.92 km to EW 7 Eunos</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div style="border-radius: 50%;
-                    aspect-ratio: 1;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    padding: 8px;
-                    font-size: 12px;
-                    background-color: #47567e;
-                    color: white;
-                    font-weight: 600;
-                  ">
-                       <span>
-                         Brand  
-                       </span>
-                       <span>
-                         New
-                       </span>
-                    </div>
-                  </div>
-                </div>
-                <div style="font-size: 11px; font-weight: 700; text-align: center;">
-                  Total: 276 units Available: 121 units Sold: 155 units 
-                </div>
-                <div style="display: flex;
-                justify-content: space-between;
-                padding: 10px 0px;">
-                  <div style="font-weight: 600;">
-                    S$50,000
-                  </div>
-                  <div>
-                    <span style="background-color: green;
-                    color: white;
-                    padding: 5px 8px;
-                    border-radius: 10px;
-                    font-size: 14px; font-weight: 600;">Enquire Now</span>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none arrow-mobile justify-content-center gap-2 mt-5">
-            <div class="prev">
-              <i class="fa-solid fa-chevron-left"></i>
-            </div>
-            <div class="next">
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
           </div>
         </div>
 
