@@ -465,46 +465,81 @@ function populateAllListings(listings) {
                     
                   </div>
                 </div>
-                    <div style="display: flex;flex-direction: column;margin-top: 3px;">
+                    <div style="display: flex;margin-top: 3px; flex-wrap: wrap; gap: 3px; ">
                         <span style="
-                            font-size: 12px;
-                            display:flex;
+                            font-size: 10px;
+                            display: flex;
                             padding: 5px 0px 2px 0px;
                             color: #000000;
                             font-weight: 400;
+                            height: 28px;
+                            background-color: #eee;
+                            padding: 6px;
+                            border-radius: 5px;
                             ">
                             <img src="public/placeholder.png" width="20px" style="margin-right: 5px;">
                              ${region}
                         </span>
+                      
                         <span style="
-                            font-size: 12px;
-                            display:flex;
-                            padding: 2px 0px;
+                             font-size: 10px;
+                            display: flex;
+                            padding: 5px 0px 2px 0px;
                             color: #000000;
                             font-weight: 400;
+                            height: 28px;
+                            background-color: #eee;
+                            padding: 6px;
+                            border-radius: 5px;
+                            ">
+                            <img src="public/building.png" style="margin-right: 5px;" width="20px">
+                                ${totalUnits} Total Units
+                        </span>
+                        <span style="
+                            font-size: 10px;
+                            display: flex;
+                            padding: 5px 0px 2px 0px;
+                            color: #000000;
+                            font-weight: 400;
+                            height: 28px;
+                            background-color: #eee;
+                            padding: 6px;
+                            border-radius: 5px;
+                            ">
+                            <img src="public/building.png" style="margin-right: 5px;" width="20px">
+                                ${availableUnits} Units Available
+                        </span>
+                        <span style="
+                            font-size: 10px;
+                            display: flex;
+                            padding: 5px 0px 2px 0px;
+                            color: #000000;
+                            font-weight: 400;
+                            height: 28px;
+                            background-color: #eee;
+                            padding: 6px;
+                            border-radius: 5px;
+
+                            ">
+                            <img src="public/building.png" style="margin-right: 5px;" width="20px">
+                                ${unitsSold} Units Sold
+                        </span>
+                          <span style="
+                           font-size: 10px;
+                            display: flex;
+                            padding: 5px 0px 2px 0px;
+                            color: #000000;
+                            font-weight: 400;
+                            height: 28px;
+                            background-color: #eee;
+                            padding: 6px;
+                            border-radius: 5px;
                             ">
                             <img src="public/meter.png" style="margin-right: 5px;" width="20px">
                                 ${nearestMRT.Distance} to ${nearestMRT.Location}
                         </span>
+                        
                     </div>
-                <div style="
-                      padding: 0px 0px;
-                      margin-top: 12px;
-                  ">
-                      <p style="
-                      font-size: 9px;
-                      font-weight: 500;
-                      text-align: center;
-                      margin: 5px 0px;
-                      background: #e1e1e18c;
-                      border-radius: 5px;
-                      padding: 5px;
-                      color: #717171;
-                      white-space: nowrap;
-                      ">
-                  Total: ${totalUnits} units Available: ${availableUnits} units Sold: ${unitsSold} units 
-                  </p>
-                </div>
                 <div style="
                 display: flex;
                 justify-content: space-between;
