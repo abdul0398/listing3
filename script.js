@@ -492,7 +492,7 @@ function populateAllListings(listings) {
                       margin-top: 12px;
                   ">
                       <p style="
-                      font-size: 10px;
+                      font-size: 9px;
                       font-weight: 500;
                       text-align: center;
                       margin: 5px 0px;
