@@ -426,7 +426,7 @@ function populateAllListings(listings) {
       ) || null;
     const dev_type = listings[i].dev_type;
 
-    listingContainer.innerHTML += `<div   style=" margin: 0px 10px; height: 480px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 8px -5px;border-radius: 20px;">
+    listingContainer.innerHTML += `<div   style=" margin: 0px 10px; height: 500px;overflow: hidden;box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 8px -5px;border-radius: 20px;">
               <div onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer; border-radius: 20px;padding: 14px;">
                 <img style="
   filter: brightness(0.9);
@@ -465,6 +465,7 @@ function populateAllListings(listings) {
                     
                   </div>
                 </div>
+                <div style="height:120px">
                     <div style="display: flex;margin-top: 3px; flex-wrap: wrap; gap: 3px; ">
                         <span style="
                             font-size: 10px;
@@ -540,6 +541,7 @@ function populateAllListings(listings) {
                         </span>
                         
                     </div>
+                </div>
                 <div style="
                 display: flex;
                 justify-content: space-between;
@@ -571,6 +573,7 @@ function populateAllListings(listings) {
         `;
   }
 
+  changeColorThroughParams();
 
 }
 
@@ -1449,18 +1452,20 @@ function changeColorThroughParams(){
   const newColor = params.get('color');
   
   if (newColor) {
-    // Select all elements with style color #39548a
     const elements = document.querySelectorAll('*');
+    const iframe_container = document.querySelector('#iframe-container');
+
+    iframe_container.style.backgroundColor = `#${newColor}`;  
 
     elements.forEach(element => {
         const elementStyle = window.getComputedStyle(element);
 
-        if (elementStyle.backgroundColor === 'rgb(57, 84, 138)') { // Equivalent to #39548a
-          console.log(element)
+        if (elementStyle.backgroundColor === 'rgb(57, 84, 138)' || elementStyle.backgroundColor == 'rgb(255, 224, 102)') {
             element.style.backgroundColor = `#${newColor}`;
         }
     });
-}
+
+  }
 }
 
 
