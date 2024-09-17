@@ -544,6 +544,7 @@ function populateAllListings(listings) {
                   <div>
                  
                     <span
+                    class="enquire-btn"
                      onclick="openContactUsPage()"
                     style="
                     background-color: #ffe066;
@@ -1440,6 +1441,7 @@ function toggleMap() {
 function changeColorThroughParams(){
   const params = new URLSearchParams(window.location.search);
   const newColor = params.get('color');
+  const textColor = params.get('textColor');
   
   if (newColor) {
     const elements = document.querySelectorAll('*');
@@ -1455,6 +1457,16 @@ function changeColorThroughParams(){
         }
     });
 
+  }
+
+  if(textColor){
+    const btns = document.querySelectorAll('.enquire-btn');
+    btns.forEach(btn => {
+      btn.style.color = `#${textColor}`;
+    });
+
+    const iframe_container = document.querySelector('#iframe-container');
+    iframe_container.style.color = `#${textColor}`;
   }
 }
 
