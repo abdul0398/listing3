@@ -418,6 +418,8 @@ function populateAllListings(listings) {
       listings[i]?.balance_units?.data.find(
         (unit) => unit.unitType == "Overall"
       )?.availableUnits || 0;
+
+      const price = listings[i]?.balance_units?.data[0].price || 0;
     const unitsSold = totalUnits - availableUnits;
     const region = listing.geographical_region;
     const nearestMRT =
@@ -539,7 +541,7 @@ function populateAllListings(listings) {
                 margin-top: 10px;
                 ">
                   <div style="font-weight: 600;font-size: 22px;margin-left: 9px;margin-top: -7px;">
-                    S$50,000
+                    S${price.split('-')[0]}
                   </div>
                   <div>
                  
