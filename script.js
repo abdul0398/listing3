@@ -23,7 +23,6 @@ async function start() {
   populateAllListings(listings);
   closeLoading();
   changeColorThroughParams()
-  addEventListenerToInput();
 }
 
 function openMap() {
@@ -1444,6 +1443,8 @@ function changeColorThroughParams(){
   const params = new URLSearchParams(window.location.search);
   const newColor = params.get('color');
   const textColor = params.get('textColor');
+  const form_btn_color = params.get('form_btn_color');
+  const form_text_color = params.get('form_text_color');
   
   if (newColor) {
     const elements = document.querySelectorAll('*');
@@ -1459,7 +1460,29 @@ function changeColorThroughParams(){
         }
     });
 
+    
   }
+  
+  if(form_btn_color){
+    
+    const iframe = document.querySelector('iframe');
+    let src = iframe.src;
+  
+    if(!src.includes('btn_color')){
+      iframe.src = iframe.src + '&btn_color=' + form_btn_color;
+    }
+  }
+
+  if(form_text_color){
+    
+    const iframe = document.querySelector('iframe');
+    let src = iframe.src;
+  
+    if(!src.includes('text_color')){
+      iframe.src = iframe.src + '&text_color=' + form_text_color;
+    }
+  }
+
 
   if(textColor){
     const btns = document.querySelectorAll('.enquire-btn');
