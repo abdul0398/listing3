@@ -1476,7 +1476,7 @@ function changeColorThroughParams(){
 
 function scrollToForm() {
   document.querySelector('.donate-detail-header').scrollTo({
-    top: 1000,
+    top: 0,
     behavior: 'smooth'
   });
 }
