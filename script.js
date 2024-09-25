@@ -434,7 +434,7 @@ function populateAllListings(listings) {
   border-radius: 20px;
   " : brightness(0.9); border-top-left-radius: 20px;
   border-top-right-radius: 20px;" src="https://api.jomejourney-portal.com${
-    listing.images[0] ? listing.images[0] : listing.images[1]
+    listing.images[0] ? listing.images[0] : listing.images[1]? listing.images[2]:listing.images[3]
   }" width="100%" height="200px" alt="">
               </div>
 
