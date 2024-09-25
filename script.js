@@ -1445,6 +1445,7 @@ function changeColorThroughParams(){
   const textColor = params.get('textColor');
   const form_btn_color = params.get('form_btn_color');
   const form_text_color = params.get('form_text_color');
+  const parent_url = params.get('parent_url');
   
   if (newColor) {
     const elements = document.querySelectorAll('*');
@@ -1461,6 +1462,15 @@ function changeColorThroughParams(){
     });
 
     
+  }
+
+  if(parent_url){
+    const iframe = document.querySelector('iframe');
+    let src = iframe.src;
+  
+    if(!src.includes('parent_url')){
+      iframe.src = iframe.src + '&parent_url=' + parent_url;
+    }
   }
   
   if(form_btn_color){
