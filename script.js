@@ -534,13 +534,14 @@ function populateAllListings(listings) {
                     </div>
                 </div>
                 <div style="
-                display: flex;
-                justify-content: space-between;
-                padding: 10px 0px;
-                margin-top: 10px;
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                  margin-top: 10px;
+                  align-items: baseline;
                 ">
-                  <div style="font-weight: 600;font-size: 22px;margin-left: 9px;margin-top: -7px;">
-                    S${price.split('-')[0]}
+                  <div style="font-weight: 600;font-size: 16px;margin-left: 9px;margin-top: -7px;">
+                    ${!price.split('-')[0].includes("$")? 'Guide Price': 'S'+price.split('-')[0]}
                   </div>
                   <div>
                  
