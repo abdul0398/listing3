@@ -1474,14 +1474,9 @@ function changeColorThroughParams(){
 
 
 
-function openContactUsPage(){
-  const form = document.createElement("form");
-
-  form.setAttribute('action', document.referrer + 'contact-us');
-  form.setAttribute('method', "post");
-  form.setAttribute("target", "_blank");
-
-  document.body.appendChild(form);
-
-  form.submit();
+function scrollToForm() {
+  document.querySelector('.donate-detail-header').scrollTo({
+    top: 1000,
+    behavior: 'smooth'
+  });
 }
