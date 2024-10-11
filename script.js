@@ -450,7 +450,7 @@ function populateAllListings(listings) {
                 ${address}
                 </p>
                 <div style="display: flex;padding: 0px 0px; height: 40px;">
-                  <div style="width: 70%;">
+                  <div style="width: 100%;">
                     <p onclick="openSingleListing(this)" title="${listing.name}" style="cursor:pointer;font-weight: 700;white-space: nowrap;overflow: hidden;margin-bottom: 0px;font-size: 19px;">${
                       listing.name
                     }</p>
